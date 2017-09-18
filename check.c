@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vinvimo <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/09/18 22:57:45 by vinvimo           #+#    #+#             */
+/*   Updated: 2017/09/18 22:58:27 by vinvimo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 
 int	check(t_struct *t, t_piece *p, char **grid)
@@ -23,6 +35,6 @@ int	check(t_struct *t, t_piece *p, char **grid)
 			t->superposition++;
 	}
 	if (t->superposition == 1)
-		return(1);
+		return (1);
 	return (0);
 }
