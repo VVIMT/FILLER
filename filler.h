@@ -66,12 +66,16 @@ void				largeur(t_piece *v, int i, int j, int sig);
 void				put_coor(t_piece *v, int i, int j);
 void				loop_coor(t_piece *v, int i, int j, int n);
 int					check(t_struct *t, t_piece *p, char **grid);
-void				distanceh1(t_struct *s);
-void				distanceh2(t_struct *s);
-void				distancev1(t_struct *s);
-void				distancev2(t_struct *s);
+void				distanceh1(t_struct *t, char enemy);
+void				distanceh2(t_struct *t, char enemy);
+void				distancev1(t_struct *t, char enemy);
+void				distancev2(t_struct *t, char enemy);
+long				tmp_distance(t_struct *t);
+long				distance(t_struct *t);
 void				init_algo(t_struct *t, t_piece *p);
 void				algo(t_struct *t, t_piece *p);
+void				loop_algo(t_struct *t, t_piece *p);
+void				loop_init_algo(t_struct *t, t_piece *p);
 long				ft_print(char **data, int fd);
 
 #endif

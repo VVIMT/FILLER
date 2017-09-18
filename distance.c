@@ -1,6 +1,6 @@
 #include "filler.h"
 
-void	distanceh1(t_struct *s)
+void	distanceh1(t_struct *t, char enemy)
 {
 	int	sig;
 	int	c;
@@ -9,13 +9,13 @@ void	distanceh1(t_struct *s)
 
 	sig = 0;
 	c = 0;
-	j = s->j;
-	while (s->grid[0][j])
+	j = t->j;
+	while (t->grid[0][j])
 	{
 		i = -1;
-		while (s->grid[++i])
+		while (t->grid[++i])
 		{
-			if (s->grid[i][j] == s->enemy)
+			if (t->grid[i][j] == enemy)
 				sig = 1;
 		}
 		if (sig == 0)
@@ -23,10 +23,10 @@ void	distanceh1(t_struct *s)
 		j++;
 	}
 	if (sig == 1)
-		s->dis_hor = c - 1;
+		t->dis_hor = c - 1;
 }
 
-void	distanceh2(t_struct *s)
+void	distanceh2(t_struct *t, char enemy)
 {
 	int	sig;
 	int	c;
@@ -35,13 +35,13 @@ void	distanceh2(t_struct *s)
 
 	sig = 0;
 	c = 0;
-	j = s->j;
+	j = t->j;
 	while (j >= 0)
 	{
 		i = -1;
-		while (s->grid[++i])
+		while (t->grid[++i])
 		{
-			if (s->grid[i][j] == s->enemy)
+			if (t->grid[i][j] == enemy)
 				sig = 1;
 		}
 		if (sig == 0)
@@ -49,10 +49,10 @@ void	distanceh2(t_struct *s)
 		j--;
 	}
 	if (sig == 1)
-		s->dis_hor = c - 1;
+		t->dis_hor = c - 1;
 }
 
-void	distancev1(t_struct *s)
+void	distancev1(t_struct *t, char enemy)
 {
 	int	sig;
 	int	c;
@@ -61,13 +61,13 @@ void	distancev1(t_struct *s)
 
 	sig = 0;
 	c = 0;
-	i = s->i;
-	while (s->grid[i])
+	i = t->i;
+	while (t->grid[i])
 	{
 		j = -1;
-		while (s->grid[i][++j])
+		while (t->grid[i][++j])
 		{
-			if (s->grid[i][j] == s->enemy)
+			if (t->grid[i][j] == enemy)
 				sig = 1;
 		}
 		if (sig == 0)
@@ -75,10 +75,10 @@ void	distancev1(t_struct *s)
 		i++;
 	}
 	if (sig == 1)
-		s->dis_ver = c - 1;
+		t->dis_ver = c - 1;
 }
 
-void	distancev2(t_struct *s)
+void	distancev2(t_struct *t, char enemy)
 {
 	int	sig;
 	int	c;
@@ -87,13 +87,13 @@ void	distancev2(t_struct *s)
 
 	sig = 0;
 	c = 0;
-	i = s->i;
+	i = t->i;
 	while (i >= 0)
 	{
 		j = -1;
-		while (s->grid[i][++j])
+		while (t->grid[i][++j])
 		{
-			if (s->grid[i][j] == s->enemy)
+			if (t->grid[i][j] == enemy)
 				sig = 1;
 		}
 		if (sig == 0)
@@ -101,5 +101,5 @@ void	distancev2(t_struct *s)
 		i--;
 	}
 	if (sig == 1)
-		s->dis_ver = c - 1;
+		t->dis_ver = c - 1;
 }
