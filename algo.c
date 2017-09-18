@@ -38,16 +38,6 @@ void	init_algo(t_struct *t, t_piece *p)
 	}
 }
 
-long	tmp_distance(t_struct *t)
-{
-	return (ft_power(t->dis_hor, 2) + ft_power(t->dis_ver, 2));
-}
-
-long	distance(t_struct *t)
-{
-	return (ft_power(t->dis_x, 2) + ft_power(t->dis_y, 2));
-}
-
 void	loop_algo(t_struct *t, t_piece *p)
 {
 	while (t->grid[p->i][p->j])
