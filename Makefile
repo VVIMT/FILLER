@@ -6,7 +6,7 @@
 #    By: vinvimo <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/19 21:03:39 by vinvimo           #+#    #+#              #
-#    Updated: 2017/09/19 21:04:31 by vinvimo          ###   ########.fr        #
+#    Updated: 2017/09/19 22:59:59 by vinvimo          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -29,7 +29,6 @@ $(NAME): filler.h
 	$(CC) $(CFLAGS) $(SRCS) libft/libft.a -o $(NAME) $(HDDIRS)
 
 all: $(NAME)
-	@make -C libft/
 
 clean:
 	@make clean -C libft/
