@@ -6,26 +6,18 @@
 /*   By: vinvimo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 22:57:00 by vinvimo           #+#    #+#             */
-/*   Updated: 2017/09/18 22:57:07 by vinvimo          ###   ########.fr       */
+/*   Updated: 2017/09/21 20:38:22 by vinvimo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void	players(t_struct *t, char *line, int *i, int j)
+void	players(t_struct *t, char *line, int *i)
 {
 	*i = 0;
 	if (ft_strncmp(line + *i, "$$$ exec p", 10) == 0)
 		*i = *i + 10;
 	t->player_number = ft_atoi(line + *i);
-	while (line[*i] && line[*i] != '[')
-		(*i)++;
-	j = 0;
-	while (line[*i + j] && line[*i + j] != ']')
-		j++;
-	t->player_name = ft_strnew(j + 1);
-	ft_bzero(t->player_name, j + 1);
-	ft_strncpy(t->player_name, line + *i + 1, j - 1);
 	if (t->player_number == 1)
 	{
 		t->c = 'o';
@@ -39,6 +31,7 @@ void	players(t_struct *t, char *line, int *i, int j)
 		t->enemy = 'o';
 	}
 	*i = ft_strlen(line);
+	ft_strdel(&line);
 }
 
 void	plate(t_struct *t, char **line, int *i, int *sig1)
@@ -85,6 +78,7 @@ void	copy_plate(t_struct *t, char **line, int *sig1)
 		ft_strcpy(*(t->grid + t->i), *line + j);
 		(t->i)++;
 	}
+	ft_strdel(line);
 	*sig1 = 2;
 }
 

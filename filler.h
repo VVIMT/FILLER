@@ -6,7 +6,7 @@
 /*   By: vinvimo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 22:55:20 by vinvimo           #+#    #+#             */
-/*   Updated: 2017/09/18 22:55:22 by vinvimo          ###   ########.fr       */
+/*   Updated: 2017/09/21 20:33:00 by vinvimo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct		s_struct
 	long			l_plateau;
 	long			h_plateau;
 	int				player_number;
-	char			*player_name;
 	char			c;
 	char			c_maj;
 	char			enemy;
@@ -63,7 +62,7 @@ typedef struct		s_gnl
 }					t_gnl;
 
 void				initialize(t_struct *t, t_piece *p);
-void				players(t_struct *t, char *line, int *i, int j);
+void				players(t_struct *t, char *line, int *i);
 void				plate(t_struct *t, char **line, int *i, int *sig1);
 void				piece(t_piece *p, char *line, int *i, int *sig2);
 void				copy_plate(t_struct *t, char **line, int *sig1);

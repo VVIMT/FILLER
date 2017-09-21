@@ -6,7 +6,7 @@
 /*   By: vinvimo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 22:55:29 by vinvimo           #+#    #+#             */
-/*   Updated: 2017/09/18 22:55:32 by vinvimo          ###   ########.fr       */
+/*   Updated: 2017/09/21 20:34:43 by vinvimo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,20 @@
 
 void	solve(t_struct *t, t_piece *p, char *line)
 {
+	int	x;
+
 	put_coor(p, 0, 0);
 	algo(t, p);
-	if (*p->piece)
-		while (--p->h_carre >= 0 && p->piece[p->h_carre])
-			free(p->piece[p->h_carre]);
-	if (*t->grid)
-		while (--t->h_plateau >= 0 && t->grid[t->h_plateau])
-			free(t->grid[t->h_plateau]);
+	x = 0;
+	while (x <= p->h_carre + 2 && p->piece[x])
+		ft_strdel(&(p->piece[x++]));
+	if (p->piece)
+		free(p->piece);
+	x = 0;
+	while (x <= t->h_plateau + 2 && t->grid[x])
+		ft_strdel(&(t->grid[x++]));
+	if (t->grid)
+		free(t->grid);
 	free(p->coorx);
 	free(p->coory);
 	initialize(t, p);
@@ -42,7 +48,7 @@ void	filler(t_struct *t, t_piece *p, int sig1, int sig2)
 		while (line[++i])
 		{
 			if (ft_strncmp(line + i, "vinvimo.filler]", 15) == 0)
-				players(t, line, &i, 0);
+				players(t, line, &i);
 			else if (ft_strncmp(line + i, "Plateau ", 8) == 0)
 				plate(t, &line, &i, &sig1);
 			else if (ft_strncmp(line + i, "Piece ", 6) == 0)
@@ -62,7 +68,6 @@ int		main(void)
 	t_struct	t;
 	t_piece		p;
 
-	t.player_name = NULL;
 	t.player_number = 0;
 	t.c = 0;
 	t.c_maj = 0;
