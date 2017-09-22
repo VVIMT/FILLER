@@ -12,43 +12,84 @@
 
 #include "filler.h"
 
-void	compensate(t_piece *v)
+void	compensate(t_piece *p)
 {
-	hauteur(v, 0, 0, 1);
-	largeur(v, 0, 0, 1);
+	hauteur(p, 0, 0, 1);
+	largeur(p, 0, 0, 1);
+	bottom_line(p, 0, 0, 1);
+	right_line(p, 0, 0, 1);
 }
 
-void	hauteur(t_piece *v, int i, int j, int sig)
+void	hauteur(t_piece *p, int i, int j, int sig)
 {
-	v->h = 0;
+	p->h = 0;
 	i = -1;
-	while (v->piece[++i])
+	while (p->piece[++i])
 	{
 		j = -1;
-		while (v->piece[i][++j])
+		while (p->piece[i][++j])
 		{
-			if (v->piece[i][j] == '*')
+			if (p->piece[i][j] == '*')
 				sig = 0;
 		}
 		if (sig == 1)
-			(v->h)++;
+			(p->h)++;
 	}
 }
 
-void	largeur(t_piece *v, int i, int j, int sig)
+void	largeur(t_piece *p, int i, int j, int sig)
 {
-	sig = 1;
-	v->l = 0;
+	p->l = 0;
 	j = -1;
-	while (v->piece[0][++j])
+	while (p->piece[0][++j])
 	{
 		i = -1;
-		while (v->piece[++i])
+		while (p->piece[++i])
 		{
-			if (v->piece[i][j] == '*')
+			if (p->piece[i][j] == '*')
 				sig = 0;
 		}
 		if (sig == 1)
-			(v->l)++;
+			(p->l)++;
 	}
+}
+
+void	bottom_line(t_piece *p, int i, int j, int sig)
+{
+	int	c;
+
+	c = 0;
+	i = p->h_carre;
+	while (--i >= 0)
+	{
+		j = -1;
+		while (p->piece[i][++j])
+		{
+			if (p->piece[i][j] == '*')
+				sig = 0;
+		}
+		if (sig == 1)
+			c++;
+	}
+	p->bline = p->h_carre - c;
+}
+
+void	right_line(t_piece *p, int i, int j, int sig)
+{
+	int	c;
+
+	c = 0;
+	j = p->l_carre;
+	while (--j >= 0)
+	{
+		i = -1;
+		while (p->piece[++i])
+		{
+			if (p->piece[i][j] == '*')
+				sig = 0;
+		}
+		if (sig == 1)
+			c++;
+	}
+	p->rline = p->l_carre - c;
 }

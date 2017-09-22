@@ -25,8 +25,7 @@ int	check(t_struct *t, t_piece *p, char **grid)
 		a = t->i + p->coorx[n];
 		b = t->j + p->coory[n];
 		if (a >= t->h_plateau || b >= t->l_plateau
-		|| grid[a][b] == t->enemy || grid[a][b] == t->enemy - 32
-		|| t->grid[t->i] == 0)
+		|| grid[a][b] == t->enemy || grid[a][b] == t->enemy - 32)
 			return (0);
 		if (grid[a][b] != '.' && grid[a][b] != 'x' && grid[a][b] != 'X'
 		&& grid[a][b] != 'o' && grid[a][b] != 'O')

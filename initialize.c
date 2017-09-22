@@ -27,6 +27,8 @@ void	initialize(t_struct *t, t_piece *p)
 	p->h_carre = 0;
 	p->l = 0;
 	p->h = 0;
+	p->bline = 0;
+	p->rline = 0;
 	p->i = 0;
 	p->j = 0;
 	p->coorx = NULL;

@@ -25,7 +25,11 @@ void	algo(t_struct *t, t_piece *p)
 	while (t->grid[p->i])
 	{
 		p->j = 0;
-		loop_algo(t, p);
+		while (t->grid[p->i][p->j])
+		{
+			loop_algo(t, p);
+			p->j++;
+		}
 		p->i++;
 	}
 	if (t->x == -(t->l_plateau + t->h_plateau)
@@ -45,65 +49,61 @@ void	init_algo(t_struct *t, t_piece *p)
 	while (t->grid[p->i])
 	{
 		p->j = 0;
-		loop_init_algo(t, p);
+		while (t->grid[p->i][p->j])
+		{
+			loop_init_algo(t, p);
+			p->j++;
+		}
 		p->i++;
 	}
 }
 
 void	loop_algo(t_struct *t, t_piece *p)
 {
-	while (t->grid[p->i][p->j])
+	t->i = p->i - p->h;
+	t->j = p->j - p->l;
+	if (check(t, p, t->grid) == 1)
 	{
-		t->i = p->i - p->h;
-		t->j = p->j - p->l;
-		if (check(t, p, t->grid) == 1)
+		t->i = p->i;
+		t->j = p->j;
+		if (t->i + p->bline <= t->h_plateau && t->j + p->rline <= t->l_plateau)
 		{
-			t->i = p->i + p->h;
-			t->j = p->j + p->l;
-			if (p->i + p->h < t->h_plateau && p->j + p->l < t->l_plateau)
-			{
-				distanceh1(t, t->enemy);
-				distanceh2(t, t->enemy);
-				distancev1(t, t->enemy);
-				distancev2(t, t->enemy);
-			}
-			if (tmp_distance(t) < distance(t))
-			{
-				t->dis_x = t->dis_hor;
-				t->dis_y = t->dis_ver;
-				t->x = p->i - p->h;
-				t->y = p->j - p->l;
-			}
+			distanceh1(t, t->enemy);
+			distanceh2(t, t->enemy);
+			distancev1(t, t->enemy);
+			distancev2(t, t->enemy);
 		}
-		p->j++;
+		if (tmp_distance(t) < distance(t))
+		{
+			t->dis_x = t->dis_hor;
+			t->dis_y = t->dis_ver;
+			t->x = p->i - p->h;
+			t->y = p->j - p->l;
+		}
 	}
 }
 
 void	loop_init_algo(t_struct *t, t_piece *p)
 {
-	while (t->grid[p->i][p->j])
+	t->i = p->i - p->h;
+	t->j = p->j - p->l;
+	if (check(t, p, t->grid) == 1)
 	{
-		t->i = p->i - p->h;
-		t->j = p->j - p->l;
-		if (check(t, p, t->grid) == 1)
+		t->i = p->i;
+		t->j = p->j;
+		if (t->i + p->bline <= t->h_plateau && t->j + p->rline <= t->l_plateau)
 		{
-			t->i = p->i + p->h;
-			t->j = p->j + p->l;
-			if (p->i + p->h < t->h_plateau && p->j + p->l < t->l_plateau)
-			{
-				distanceh1(t, t->enemy - 32);
-				distanceh2(t, t->enemy - 32);
-				distancev1(t, t->enemy - 32);
-				distancev2(t, t->enemy - 32);
-			}
-			if (tmp_distance(t) <= distance(t))
-			{
-				t->dis_x = t->dis_hor;
-				t->dis_y = t->dis_ver;
-				t->x = p->i - p->h;
-				t->y = p->j - p->l;
-			}
+			distanceh1(t, t->enemy - 32);
+			distanceh2(t, t->enemy - 32);
+			distancev1(t, t->enemy - 32);
+			distancev2(t, t->enemy - 32);
 		}
-		p->j++;
+		if (tmp_distance(t) <= distance(t))
+		{
+			t->dis_x = t->dis_hor;
+			t->dis_y = t->dis_ver;
+			t->x = p->i - p->h;
+			t->y = p->j - p->l;
+		}
 	}
 }

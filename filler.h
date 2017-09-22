@@ -48,6 +48,8 @@ typedef struct		s_piece
 	int				h_carre;
 	int				l;
 	int				h;
+	int				bline;
+	int				rline;
 	int				i;
 	int				j;
 	int				*coorx;
@@ -74,6 +76,8 @@ char				**create_tab(int i, int j);
 void				compensate(t_piece *v);
 void				hauteur(t_piece *v, int i, int j, int sig);
 void				largeur(t_piece *v, int i, int j, int sig);
+void				bottom_line(t_piece *p, int i, int j, int sig);
+void				right_line(t_piece *p, int i, int j, int sig);
 void				put_coor(t_piece *v, int i, int j);
 void				loop_coor(t_piece *v, int i, int j, int n);
 int					check(t_struct *t, t_piece *p, char **grid);
