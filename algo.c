@@ -60,40 +60,40 @@ void	init_algo(t_struct *t, t_piece *p)
 
 void	loop_algo(t_struct *t, t_piece *p)
 {
-	t->i = p->i - p->h;
-	t->j = p->j - p->l;
+	t->i = p->i - p->top;
+	t->j = p->j - p->left;
 	if (check(t, p, t->grid) == 1)
 	{
 		t->i = p->i;
 		t->j = p->j;
-		if (p->i - p->h + p->bline <= t->h_plateau
-		&& p->j - p->l + p->rline <= t->l_plateau
+		if (p->i - p->top + p->bot <= t->h_plateau
+		&& p->j - p->left + p->right <= t->l_plateau
 		&& tmp_distance(t, t->enemy) < distance(t))
 		{
 			t->dis_x = t->dis_hor;
 			t->dis_y = t->dis_ver;
-			t->x = p->i - p->h;
-			t->y = p->j - p->l;
+			t->x = p->i - p->top;
+			t->y = p->j - p->left;
 		}
 	}
 }
 
 void	loop_init_algo(t_struct *t, t_piece *p)
 {
-	t->i = p->i - p->h;
-	t->j = p->j - p->l;
+	t->i = p->i - p->top;
+	t->j = p->j - p->left;
 	if (check(t, p, t->grid) == 1)
 	{
 		t->i = p->i;
 		t->j = p->j;
-		if (p->i - p->h + p->bline <= t->h_plateau
-		&& p->j - p->l + p->rline <= t->l_plateau
+		if (p->i - p->top + p->bot <= t->h_plateau
+		&& p->j - p->left + p->right <= t->l_plateau
 		&& tmp_distance(t, t->enemy - 32) <= distance(t))
 		{
 			t->dis_x = t->dis_hor;
 			t->dis_y = t->dis_ver;
-			t->x = p->i - p->h;
-			t->y = p->j - p->l;
+			t->x = p->i - p->top;
+			t->y = p->j - p->left;
 		}
 	}
 }

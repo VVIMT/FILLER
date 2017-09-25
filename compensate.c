@@ -14,82 +14,48 @@
 
 void	compensate(t_piece *p)
 {
-	hauteur(p, 0, 0, 1);
-	largeur(p, 0, 0, 1);
-	bottom_line(p, 0, 0, 1);
-	right_line(p, 0, 0, 1);
+	top_line(p, -1);
+	left_line(p, -1);
+	bottom_line(p, -1);
+	right_line(p, -1);
 }
 
-void	hauteur(t_piece *p, int i, int j, int sig)
+void	top_line(t_piece *p, int i)
 {
-	p->h = 0;
-	i = -1;
-	while (p->piece[++i])
+	p->top = p->coorx[0];
+	while (p->coorx[++i] != -1)
 	{
-		j = -1;
-		while (p->piece[i][++j])
-		{
-			if (p->piece[i][j] == '*')
-				sig = 0;
-		}
-		if (sig == 1)
-			(p->h)++;
+	if (p->coorx[i] < p->top)
+		p->top = p->coorx[i];
 	}
 }
 
-void	largeur(t_piece *p, int i, int j, int sig)
+void	left_line(t_piece *p, int i)
 {
-	p->l = 0;
-	j = -1;
-	while (p->piece[0][++j])
+	p->left = p->coory[0];
+	while (p->coory[++i] != -1)
 	{
-		i = -1;
-		while (p->piece[++i])
-		{
-			if (p->piece[i][j] == '*')
-				sig = 0;
-		}
-		if (sig == 1)
-			(p->l)++;
+	if (p->coory[i] < p->left)
+		p->left = p->coory[i];
 	}
 }
 
-void	bottom_line(t_piece *p, int i, int j, int sig)
+void	bottom_line(t_piece *p, int i)
 {
-	int	c;
-
-	c = 0;
-	i = p->h_carre;
-	while (--i >= 0)
+	p->bot = p->coorx[0];
+	while (p->coorx[++i] != -1)
 	{
-		j = -1;
-		while (p->piece[i][++j])
-		{
-			if (p->piece[i][j] == '*')
-				sig = 0;
-		}
-		if (sig == 1)
-			c++;
+	if (p->coorx[i] > p->bot)
+		p->bot = p->coorx[i];
 	}
-	p->bline = p->h_carre - c;
 }
 
-void	right_line(t_piece *p, int i, int j, int sig)
+void	right_line(t_piece *p, int i)
 {
-	int	c;
-
-	c = 0;
-	j = p->l_carre;
-	while (--j >= 0)
+	p->right = p->coory[0];
+	while (p->coory[++i] != -1)
 	{
-		i = -1;
-		while (p->piece[++i])
-		{
-			if (p->piece[i][j] == '*')
-				sig = 0;
-		}
-		if (sig == 1)
-			c++;
+	if (p->coory[i] > p->right)
+		p->right = p->coory[i];
 	}
-	p->rline = p->l_carre - c;
 }
