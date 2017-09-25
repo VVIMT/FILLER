@@ -19,7 +19,7 @@ CFLAGS=-Wall -Wextra -Werror
 HDDIRS=-I /filler.h
 
 SRCS=get_next_line.c filler.c initialize.c create_tab.c ft_intnew.c \
-data_copy.c put_coor.c compensate.c check.c tmp_distance.c distance.c algo.c \
+get_data.c put_coor.c compensate.c check.c tmp_distance.c distance.c algo.c \
 ft_print.c
 
 OBJ=$(SRCS:.c=.o)
