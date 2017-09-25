@@ -23,6 +23,7 @@
 
 typedef struct		s_struct
 {
+	int				fd;
 	int				x;
 	int				y;
 	int				i;
@@ -85,7 +86,7 @@ void				distanceh1(t_struct *t, char enemy);
 void				distanceh2(t_struct *t, char enemy);
 void				distancev1(t_struct *t, char enemy);
 void				distancev2(t_struct *t, char enemy);
-long				tmp_distance(t_struct *t);
+long				tmp_distance(t_struct *t, char enemy);
 long				distance(t_struct *t);
 void				init_algo(t_struct *t, t_piece *p);
 void				algo(t_struct *t, t_piece *p);

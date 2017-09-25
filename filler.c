@@ -40,7 +40,7 @@ void	filler(t_struct *t, t_piece *p, int sig1, int sig2)
 	int		i;
 
 	initialize(t, p);
-	while (get_next_line(0, &line))
+	while (get_next_line(t->fd, &line))
 	{
 		sig1 = 0;
 		sig2 = 0;
@@ -68,6 +68,8 @@ int		main(void)
 	t_struct	t;
 	t_piece		p;
 
+//t.fd = open("Plateau", O_RDONLY);
+	t.fd = 0;
 	t.player_number = 0;
 	t.c = 0;
 	t.c_maj = 0;

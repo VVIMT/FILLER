@@ -46,7 +46,7 @@ void	plate(t_struct *t, char **line, int *i, int *sig1)
 	t->grid = create_tab(t->h_plateau, t->l_plateau);
 	*sig1 = 1;
 	ft_strdel(line);
-	get_next_line(0, line);
+	get_next_line(t->fd, line);
 }
 
 void	piece(t_piece *p, char *line, int *i, int *sig2)
@@ -70,7 +70,7 @@ void	copy_plate(t_struct *t, char **line, int *sig1)
 	while (t->i < t->h_plateau)
 	{
 		ft_strdel(line);
-		get_next_line(0, line);
+		get_next_line(t->fd, line);
 		j = 0;
 		while (((*line)[j] >= '0' && (*line)[j] <= '9')
 		|| (*line)[j] == ' ')
@@ -88,7 +88,7 @@ void	copy_piece(t_struct *t, t_piece *p, char **line, int *sig2)
 	while (t->i < p->h_carre)
 	{
 		ft_strdel(line);
-		get_next_line(0, line);
+		get_next_line(t->fd, line);
 		ft_strcpy(*(p->piece + t->i), *line);
 		(t->i)++;
 	}

@@ -66,14 +66,9 @@ void	loop_algo(t_struct *t, t_piece *p)
 	{
 		t->i = p->i;
 		t->j = p->j;
-		if (t->i + p->bline <= t->h_plateau && t->j + p->rline <= t->l_plateau)
-		{
-			distanceh1(t, t->enemy);
-			distanceh2(t, t->enemy);
-			distancev1(t, t->enemy);
-			distancev2(t, t->enemy);
-		}
-		if (tmp_distance(t) < distance(t))
+		if (p->i - p->h + p->bline <= t->h_plateau
+		&& p->j - p->l + p->rline <= t->l_plateau
+		&& tmp_distance(t, t->enemy) < distance(t))
 		{
 			t->dis_x = t->dis_hor;
 			t->dis_y = t->dis_ver;
@@ -91,14 +86,9 @@ void	loop_init_algo(t_struct *t, t_piece *p)
 	{
 		t->i = p->i;
 		t->j = p->j;
-		if (t->i + p->bline <= t->h_plateau && t->j + p->rline <= t->l_plateau)
-		{
-			distanceh1(t, t->enemy - 32);
-			distanceh2(t, t->enemy - 32);
-			distancev1(t, t->enemy - 32);
-			distancev2(t, t->enemy - 32);
-		}
-		if (tmp_distance(t) <= distance(t))
+		if (p->i - p->h + p->bline <= t->h_plateau
+		&& p->j - p->l + p->rline <= t->l_plateau
+		&& tmp_distance(t, t->enemy - 32) <= distance(t))
 		{
 			t->dis_x = t->dis_hor;
 			t->dis_y = t->dis_ver;
