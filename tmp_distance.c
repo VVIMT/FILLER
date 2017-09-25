@@ -12,6 +12,15 @@
 
 #include "filler.h"
 
+long	tmp_distance(t_struct *t, char enemy)
+{
+	distanceh1(t, enemy);
+	distanceh2(t, enemy);
+	distancev1(t, enemy);
+	distancev2(t, enemy);
+	return (ft_power(t->dis_hor, 2) + ft_power(t->dis_ver, 2));
+}
+
 void	distanceh1(t_struct *t, char enemy)
 {
 	int	sig;
