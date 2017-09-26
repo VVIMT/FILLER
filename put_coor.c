@@ -12,41 +12,50 @@
 
 #include "filler.h"
 
-void	put_coor(t_piece *v, int i, int j)
+void	put_coor(t_piece *p, int i, int j)
 {
 	int	n;
 
 	n = 0;
 	i = -1;
-	while (v->piece[++i])
+	while (p->piece[++i])
 	{
 		j = -1;
-		while (v->piece[i][++j])
-			if (v->piece[i][j] == '*')
+		while (p->piece[i][++j])
+			if (p->piece[i][j] == '*')
 				n++;
 	}
-	v->coorx = ft_intnew(n + 1);
-	v->coory = ft_intnew(n + 1);
-	loop_coor(v, 0, 0, 0);
+	p->coorx = ft_intnew(n + 1);
+	p->coory = ft_intnew(n + 1);
+	loop_coor(p, 0, 0, 0);
+	shape(p);
 }
 
-void	loop_coor(t_piece *v, int i, int j, int n)
+void	loop_coor(t_piece *p, int i, int j, int n)
 {
 	i = -1;
-	while (v->piece[++i])
+	while (p->piece[++i])
 	{
 		j = -1;
-		while (v->piece[i][++j])
+		while (p->piece[i][++j])
 		{
-			if (v->piece[i][j] == '*')
+			if (p->piece[i][j] == '*')
 			{
-				v->coorx[n] = i;
-				v->coory[n] = j;
+				p->coorx[n] = i;
+				p->coory[n] = j;
 				n++;
 			}
 		}
 		j = 0;
 	}
-	v->coorx[n] = -1;
-	v->coory[n] = -1;
+	p->coorx[n] = -1;
+	p->coory[n] = -1;
+}
+
+void	shape(t_piece *p)
+{
+	if (p->bot - p->top >= p->right - p->left)
+		p->ver = 1;
+	else
+		p->hor = 1;
 }
