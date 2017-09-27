@@ -1,29 +1,28 @@
 #include "filler.h"
 
-long	choose_targets(t_struct *t)
+int		choose_targets(t_struct *t, int tmp1, int tmp2)
 {
-	int	a;
-	int	b;
-
-	a = sweeph1(t, 0, 0, 0);
-	b = sweeph2(t, 0, 0, 0);
-	greatest(a, b);
-	if (a > -1)
+	t->a = sweeph1(t, 0, 0, 0);
+	t->b = sweeph2(t, 0, 0, 0);
+	tmp1 = greatest(t->a, t->b);
+	t->a = sweepv1(t, 0, 0, 0);
+	t->b = sweepv2(t, 0, 0, 0);
+	tmp2 = greatest(t->a, t->b);
+	if (tmp1 > tmp2 && tmp1 > -1)
 	{
-		if (t->grid[0][a] == '.')
-			t->grid[0][a] = '1';
-		if (t->grid[t->h_plateau - 1][a] == '.')
-			t->grid[t->h_plateau - 1][a] = '2';
+		if (t->grid[0][tmp1] == '.')
+			t->grid[0][tmp1] = '1';
+		if (t->grid[t->h_plateau - 1][tmp1] == '.')
+			t->grid[t->h_plateau - 1][tmp1] = '2';
+		return (1);
 	}
-	a = sweepv1(t, 0, 0, 0);
-	b = sweepv2(t, 0, 0, 0);
-	greatest(a, b);
-	if (a > -1)
+	else if (tmp1 <= tmp2 && tmp2 > -1)
 	{
-		if (t->grid[a][t->l_plateau] == '.')
-			t->grid[a][t->l_plateau] = '3';
-		if (t->grid[a][0] == '.')
-			t->grid[a][0] = '4';
+		if (t->grid[tmp2][t->l_plateau] == '.')
+			t->grid[tmp2][t->l_plateau] = '1';
+		if (t->grid[tmp2][0] == '.')
+			t->grid[tmp2][0] = '2';
+		return (2);
 	}
 	return (0);
 }

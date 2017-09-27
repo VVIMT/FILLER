@@ -6,7 +6,7 @@
 /*   By: vinvimo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 22:55:20 by vinvimo           #+#    #+#             */
-/*   Updated: 2017/09/27 22:26:32 by vinvimo          ###   ########.fr       */
+/*   Updated: 2017/09/27 23:54:08 by vinvimo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct		s_struct
 	int				y;
 	int				i;
 	int				j;
+	int				a;
+	int				b;
 	int				superposition;
 	long			l_plateau;
 	long			h_plateau;
@@ -91,15 +93,15 @@ void				distanceh2(t_struct *t, char enemy);
 void				distancev1(t_struct *t, char enemy);
 void				distancev2(t_struct *t, char enemy);
 int					greatest(int a, int b);
-long				choose_targets(t_struct *t);
+int					choose_targets(t_struct *t, int tmp1, int tmp2);
 int					sweeph1(t_struct *t, int sig1, int sig2, int sig3);
 int					sweeph2(t_struct *t, int sig1, int sig2, int sig3);
 int					sweepv1(t_struct *t, int sig1, int sig2, int sig3);
 int					sweepv2(t_struct *t, int sig1, int sig2, int sig3);
 long				distance(t_struct *t);
-void				algo_1(t_struct *t, t_piece *p);
+void				algo(t_struct *t, t_piece *p);
 void				algo_2(t_struct *t, t_piece *p);
-void				loop_algo_1(t_struct *t, t_piece *p);
+void				loop_algo(t_struct *t, t_piece *p);
 void				loop_algo_2(t_struct *t, t_piece *p);
 long				ft_print(char **data, int fd);
 
