@@ -6,7 +6,7 @@
 /*   By: vinvimo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 22:55:20 by vinvimo           #+#    #+#             */
-/*   Updated: 2017/09/27 21:58:20 by vinvimo          ###   ########.fr       */
+/*   Updated: 2017/09/27 22:26:32 by vinvimo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,10 @@ void				distancev1(t_struct *t, char enemy);
 void				distancev2(t_struct *t, char enemy);
 int					greatest(int a, int b);
 long				choose_targets(t_struct *t);
-int					sweeph1(t_struct *t);
-int					sweeph2(t_struct *t);
-int					sweepv1(t_struct *t);
-int					sweepv2(t_struct *t);
+int					sweeph1(t_struct *t, int sig1, int sig2, int sig3);
+int					sweeph2(t_struct *t, int sig1, int sig2, int sig3);
+int					sweepv1(t_struct *t, int sig1, int sig2, int sig3);
+int					sweepv2(t_struct *t, int sig1, int sig2, int sig3);
 long				distance(t_struct *t);
 void				algo_1(t_struct *t, t_piece *p);
 void				algo_2(t_struct *t, t_piece *p);
