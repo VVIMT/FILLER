@@ -27,9 +27,6 @@ int	check(t_struct *t, t_piece *p, char **grid)
 		if (a >= t->h_plateau || b >= t->l_plateau
 		|| grid[a][b] == t->enemy || grid[a][b] == t->enemy - 32)
 			return (0);
-		if (grid[a][b] != '.' && grid[a][b] != 'x' && grid[a][b] != 'X'
-		&& grid[a][b] != 'o' && grid[a][b] != 'O')
-			return (0);
 		if (grid[a][b] == t->c || grid[a][b] == t->c_maj)
 			t->superposition++;
 	}

@@ -9,12 +9,16 @@ long	choose_targets(t_struct *t)
 	b = 0;
 	if (sweeph1(t) > sweeph2(t))
 		a = 1;
-	else
+	else if (sweeph1(t) <= sweeph2(t))
 		a = 2;
+	else if (sweeph1(t) == 0 && sweeph2(t) == 0)
+		a = 0;
 	if (sweepv1(t) > sweepv2(t))
 		b = 4;
-	else
+	else if (sweepv1(t) <= sweepv2(t))
 		b = 8;
+	else if (sweepv1(t) == 0 && sweepv2(t) == 0)
+		b = 0;
 	return (a + b);
 }
 
