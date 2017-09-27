@@ -6,7 +6,7 @@
 /*   By: vinvimo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 22:55:20 by vinvimo           #+#    #+#             */
-/*   Updated: 2017/09/21 20:33:00 by vinvimo          ###   ########.fr       */
+/*   Updated: 2017/09/27 21:58:20 by vinvimo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "libft/libft.h"
 
 # define ERRORCHECK(x) if (!x) return (-1)
-# define BUFF_SIZE 100
+# define BUFF_SIZE 150
 
 typedef struct		s_struct
 {
@@ -90,16 +90,17 @@ void				distanceh1(t_struct *t, char enemy);
 void				distanceh2(t_struct *t, char enemy);
 void				distancev1(t_struct *t, char enemy);
 void				distancev2(t_struct *t, char enemy);
+int					greatest(int a, int b);
 long				choose_targets(t_struct *t);
 int					sweeph1(t_struct *t);
 int					sweeph2(t_struct *t);
 int					sweepv1(t_struct *t);
 int					sweepv2(t_struct *t);
 long				distance(t_struct *t);
-void				init_algo(t_struct *t, t_piece *p);
-void				algo(t_struct *t, t_piece *p);
-void				loop_algo(t_struct *t, t_piece *p);
-void				loop_init_algo(t_struct *t, t_piece *p);
+void				algo_1(t_struct *t, t_piece *p);
+void				algo_2(t_struct *t, t_piece *p);
+void				loop_algo_1(t_struct *t, t_piece *p);
+void				loop_algo_2(t_struct *t, t_piece *p);
 long				ft_print(char **data, int fd);
 
 #endif
