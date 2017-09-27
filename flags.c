@@ -18,8 +18,8 @@ int		choose_targets(t_struct *t, int tmp1, int tmp2)
 	}
 	else if (tmp1 <= tmp2 && tmp2 > -1)
 	{
-		if (t->grid[tmp2][t->l_plateau] == '.')
-			t->grid[tmp2][t->l_plateau] = '1';
+		if (t->grid[tmp2][t->l_plateau - 1] == '.')
+			t->grid[tmp2][t->l_plateau - 1] = '1';
 		if (t->grid[tmp2][0] == '.')
 			t->grid[tmp2][0] = '2';
 		return (2);
