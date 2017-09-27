@@ -1,21 +1,12 @@
 #include "filler.h"
 
-int		greatest(int a, int b)
-{
-	if (a > b)
-		b = a;
-	else if (a <= b)
-		a = b;
-	return (a);
-}
-
 long	choose_targets(t_struct *t)
 {
 	int	a;
 	int	b;
 
-	a = sweeph1(t);
-	b = sweeph2(t);
+	a = sweeph1(t, 0, 0, 0);
+	b = sweeph2(t, 0, 0, 0);
 	greatest(a, b);
 	if (a > -1)
 	{
@@ -24,8 +15,8 @@ long	choose_targets(t_struct *t)
 		if (t->grid[t->h_plateau - 1][a] == '.')
 			t->grid[t->h_plateau - 1][a] = '2';
 	}
-	a = sweepv1(t);
-	b = sweepv2(t);
+	a = sweepv1(t, 0, 0, 0);
+	b = sweepv2(t, 0, 0, 0);
 	greatest(a, b);
 	if (a > -1)
 	{
@@ -37,16 +28,11 @@ long	choose_targets(t_struct *t)
 	return (0);
 }
 
-int		sweeph1(t_struct *t)
+int		sweeph1(t_struct *t, int sig1, int sig2, int sig3)
 {
-	int	sig1;
-	int	sig2;
-	int	sig3;
 	int	i;
 	int	j;
 
-	sig1 = 0;
-	sig2 = 0;
 	j = 0;
 	while (t->grid[0][j])
 	{
@@ -71,16 +57,11 @@ int		sweeph1(t_struct *t)
 	return (-1);
 }
 
-int		sweeph2(t_struct *t)
+int		sweeph2(t_struct *t, int sig1, int sig2, int sig3)
 {
-	int	sig1;
-	int	sig2;
-	int	sig3;
 	int	i;
 	int	j;
 
-	sig1 = 0;
-	sig2 = 0;
 	j = t->l_plateau - 1;
 	while (j >= 0)
 	{
@@ -105,16 +86,11 @@ int		sweeph2(t_struct *t)
 	return (-1);
 }
 
-int		sweepv1(t_struct *t)
+int		sweepv1(t_struct *t, int sig1, int sig2, int sig3)
 {
-	int	sig1;
-	int	sig2;
-	int	sig3;
 	int	i;
 	int	j;
 
-	sig1 = 0;
-	sig2 = 0;
 	i = 0;
 	while (t->grid[i])
 	{
@@ -139,16 +115,11 @@ int		sweepv1(t_struct *t)
 	return (-1);
 }
 
-int		sweepv2(t_struct *t)
+int		sweepv2(t_struct *t, int sig1, int sig2, int sig3)
 {
-	int	sig1;
-	int	sig2;
-	int	sig3;
 	int	i;
 	int	j;
 
-	sig1 = 0;
-	sig2 = 0;
 	i = t->h_plateau - 1;
 	while (i >= 0)
 	{
