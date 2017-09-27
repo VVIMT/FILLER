@@ -1,25 +1,40 @@
 #include "filler.h"
 
+int		greatest(int a, int b)
+{
+	if (a > b)
+		b = a;
+	else if (a <= b)
+		a = b;
+	return (a);
+}
+
 long	choose_targets(t_struct *t)
 {
 	int	a;
 	int	b;
 
-	a = 0;
-	b = 0;
-	if (sweeph1(t) > sweeph2(t))
-		a = 1;
-	else if (sweeph1(t) <= sweeph2(t))
-		a = 2;
-	else if (sweeph1(t) == 0 && sweeph2(t) == 0)
-		a = 0;
-	if (sweepv1(t) > sweepv2(t))
-		b = 4;
-	else if (sweepv1(t) <= sweepv2(t))
-		b = 8;
-	else if (sweepv1(t) == 0 && sweepv2(t) == 0)
-		b = 0;
-	return (a + b);
+	a = sweeph1(t);
+	b = sweeph2(t);
+	greatest(a, b);
+	if (a > -1)
+	{
+		if (t->grid[0][a] == '.')
+			t->grid[0][a] = '1';
+		if (t->grid[t->h_plateau - 1][a] == '.')
+			t->grid[t->h_plateau - 1][a] = '2';
+	}
+	a = sweepv1(t);
+	b = sweepv2(t);
+	greatest(a, b);
+	if (a > -1)
+	{
+		if (t->grid[a][t->l_plateau] == '.')
+			t->grid[a][t->l_plateau] = '3';
+		if (t->grid[a][0] == '.')
+			t->grid[a][0] = '4';
+	}
+	return (0);
 }
 
 int		sweeph1(t_struct *t)
@@ -46,20 +61,14 @@ int		sweeph1(t_struct *t)
 				sig2 = 1;
 		}
 		if (sig2 == 1 && sig1 == 1 && j > 0)
-		{
-			if (t->grid[0][j - 1] == '.')
-				t->grid[0][j - 1] = '1';
-			if (t->grid[t->h_plateau - 1][j - 1] == '.')
-				t->grid[t->h_plateau - 1][j - 1] = '2';
-			return (j);
-		}
+			return (j - 1);
 		else if (sig2 == 1)
-			return (0);
+			return (-1);
 		if (sig3 == 1)
 			sig1 = 1;
 		j++;
 	}
-	return (0);
+	return (-1);
 }
 
 int		sweeph2(t_struct *t)
@@ -86,20 +95,14 @@ int		sweeph2(t_struct *t)
 				sig2 = 1;
 		}
 		if (sig2 == 1 && sig1 == 1 && j < t->l_plateau - 1)
-		{
-			if (t->grid[0][j + 1] == '.')
-				t->grid[0][j + 1] = '3';
-			if (t->grid[t->h_plateau - 1][j + 1] == '.')
-				t->grid[t->h_plateau - 1][j + 1] = '4';
-			return (j);
-		}
+			return (j + 1);
 		else if (sig2 == 1)
-			return (0);
+			return (-1);
 		if (sig3 == 1)
 			sig1 = 1;
 		j--;
 	}
-	return (0);
+	return (-1);
 }
 
 int		sweepv1(t_struct *t)
@@ -126,20 +129,14 @@ int		sweepv1(t_struct *t)
 				sig2 = 1;
 		}
 		if (sig2 == 1 && sig1 == 1 && i > 0)
-		{
-			if (t->grid[i - 1][t->l_plateau] == '.')
-				t->grid[i - 1][t->l_plateau] = '5';
-			if (t->grid[i - 1][0] == '.')
-				t->grid[i - 1][0] = '6';
-			return (i);
-		}
+			return (i - 1);
 		else if (sig2 == 1)
-			return (0);
+			return (-1);
 		if (sig3 == 1)
 			sig1 = 1;
 		i++;
 	}
-	return (0);
+	return (-1);
 }
 
 int		sweepv2(t_struct *t)
@@ -166,18 +163,12 @@ int		sweepv2(t_struct *t)
 				sig2 = 1;
 		}
 		if (sig2 == 1 && sig1 == 1 && i < t->h_plateau - 1)
-		{
-			if (t->grid[i + 1][t->l_plateau] == '.')
-				t->grid[i + 1][t->l_plateau] = '7';
-			if (t->grid[i + 1][0] == '.')
-				t->grid[i + 1][0] = '8';
-			return (i);
-		}
+			return (i + 1);
 		else if (sig2 == 1)
-			return (0);
+			return (-1);
 		if (sig3 == 1)
 			sig1 = 1;
 		i--;
 	}
-	return (0);
+	return (-1);
 }
