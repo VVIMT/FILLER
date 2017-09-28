@@ -1,48 +1,45 @@
 #include "filler.h"
 
-int		choose_targets(t_struct *t, int tmp1, int tmp2)
+int		choose_targets(t_struct *t, int i, int j)
 {
-	int	sig;
+	int	area1 = 0;
+	int	area2 = 0;
 
-	sig = 0;
-	t->a = sweeph1(t, 0, 0, 0);
-	t->b = sweeph2(t, 0, 0, 0);
-	tmp1 = greatest(t->a, t->l_plateau - 1 - t->b);
-	t->a = sweepv1(t, 0, 0, 0);
-	t->b = sweepv2(t, 0, 0, 0);
-	tmp2 = greatest(t->a, t->h_plateau - 1 - t->b);
-	if (tmp1 > tmp2 && tmp1 > -1)
+	t->sig = 0;
+	t->a = sweeph1(t, 0, 0);
+	t->b = sweeph2(t, 0, 0);
+	j = greatest(t, t->l_plateau, t->a, t->b);
+	if (t->sig == 0)
+		area1 = t->h_plateau * j;
+	else if (t->sig == 1)
+		area1 = t->h_plateau * (t->l_plateau - j - 1);
+	t->a = sweepv1(t, 0, 0);
+	t->b = sweepv2(t, 0, 0);
+	i = greatest(t, t->h_plateau, t->a, t->b);
+	if (t->sig == 0)
+		area2 = t->l_plateau * i;
+	else if (t->sig == 1)
+		area2 = t->l_plateau * (t->h_plateau - i - 1);
+	if (area1 > area2 && j > 0)
 	{
-		if (t->grid[0][tmp1] == '.')
-		{
-			t->grid[0][tmp1] = '1';
-			sig++;
-		}
-		if (t->grid[t->h_plateau - 1][tmp1] == '.')
-		{
-			t->grid[t->h_plateau - 1][tmp1] = '2';
-			sig++;
-		}
-		return (sig);
+		if (t->grid[0][j] == '.')
+			t->grid[0][j] = '1';
+		if (t->grid[t->h_plateau - 1][j] == '.')
+			t->grid[t->h_plateau - 1][j] = '2';
+		return (1);
 	}
-	else if (tmp1 <= tmp2 && tmp2 > -1)
+	else if (area1 <= area2 && i > 0)
 	{
-		if (t->grid[tmp2][t->l_plateau - 1] == '.')
-		{
-			t->grid[tmp2][t->l_plateau - 1] = '1';
-			sig++;
-		}
-		if (t->grid[tmp2][0] == '.')
-		{
-			t->grid[tmp2][0] = '2';
-			sig++;
-		}
-		return (sig);
+		if (t->grid[i][t->l_plateau - 1] == '.')
+			t->grid[i][t->l_plateau - 1] = '1';
+		if (t->grid[i][0] == '.')
+			t->grid[i][0] = '2';
+		return (1);
 	}
 	return (0);
 }
 
-int		sweeph1(t_struct *t, int sig1, int sig2, int sig3)
+int		sweeph1(t_struct *t, int sig1, int sig2)
 {
 	int	i;
 	int	j;
@@ -50,28 +47,25 @@ int		sweeph1(t_struct *t, int sig1, int sig2, int sig3)
 	j = 0;
 	while (t->grid[0][j])
 	{
-		sig3 = 0;
 		i = -1;
 		while (t->grid[++i])
 		{
 			if (t->grid[i][j] == t->c || t->grid[i][j] == t->c_maj)
-				sig3 = 1;
+				sig1 = 1;
 			if (t->grid[i][j] == t->enemy
 			|| t->grid[i][j] == t->enemy - 32)
 				sig2 = 1;
 		}
-		if (sig2 == 1 && sig1 == 1 && j > 0)
-			return (j - 1);
-		else if (sig2 == 1 && sig1 == 0)
+		if (sig1 == 1 && sig2 == 1)
+			return (j);
+		else if (sig1 == 0 && sig2 == 1)
 			return (-1);
-		if (sig3 == 1)
-			sig1 = 1;
 		j++;
 	}
 	return (-1);
 }
 
-int		sweeph2(t_struct *t, int sig1, int sig2, int sig3)
+int		sweeph2(t_struct *t, int sig1, int sig2)
 {
 	int	i;
 	int	j;
@@ -79,28 +73,25 @@ int		sweeph2(t_struct *t, int sig1, int sig2, int sig3)
 	j = t->l_plateau - 1;
 	while (j >= 0)
 	{
-		sig3 = 0;
 		i = -1;
 		while (t->grid[++i])
 		{
 			if (t->grid[i][j] == t->c || t->grid[i][j] == t->c_maj)
-				sig3 = 1;
+				sig1 = 1;
 			if (t->grid[i][j] == t->enemy
 			|| t->grid[i][j] == t->enemy - 32)
 				sig2 = 1;
 		}
-		if (sig2 == 1 && sig1 == 1 && j < t->l_plateau - 1)
-			return (j + 1);
-		else if (sig2 == 1 && sig1 == 0)
+		if (sig1 == 1 && sig2 == 1)
+			return (j);
+		else if (sig1 == 0 && sig2 == 1)
 			return (-1);
-		if (sig3 == 1)
-			sig1 = 1;
 		j--;
 	}
 	return (-1);
 }
 
-int		sweepv1(t_struct *t, int sig1, int sig2, int sig3)
+int		sweepv1(t_struct *t, int sig1, int sig2)
 {
 	int	i;
 	int	j;
@@ -108,28 +99,25 @@ int		sweepv1(t_struct *t, int sig1, int sig2, int sig3)
 	i = 0;
 	while (t->grid[i])
 	{
-		sig3 = 0;
 		j = -1;
 		while (t->grid[i][++j])
 		{
 			if (t->grid[i][j] == t->c || t->grid[i][j] == t->c_maj)
-				sig3 = 1;
+				sig1 = 1;
 			if (t->grid[i][j] == t->enemy
 			|| t->grid[i][j] == t->enemy - 32)
 				sig2 = 1;
 		}
-		if (sig2 == 1 && sig1 == 1 && i > 0)
-			return (i - 1);
-		else if (sig2 == 1 && sig1 == 0)
+		if (sig1 == 1 && sig2 == 1)
+			return (i);
+		else if (sig1 == 0 && sig2 == 1)
 			return (-1);
-		if (sig3 == 1)
-			sig1 = 1;
 		i++;
 	}
 	return (-1);
 }
 
-int		sweepv2(t_struct *t, int sig1, int sig2, int sig3)
+int		sweepv2(t_struct *t, int sig1, int sig2)
 {
 	int	i;
 	int	j;
@@ -137,22 +125,19 @@ int		sweepv2(t_struct *t, int sig1, int sig2, int sig3)
 	i = t->h_plateau - 1;
 	while (i >= 0)
 	{
-		sig3 = 0;
 		j = -1;
 		while (t->grid[i][++j])
 		{
 			if (t->grid[i][j] == t->c || t->grid[i][j] == t->c_maj)
-				sig3 = 1;
+				sig1 = 1;
 			if (t->grid[i][j] == t->enemy
 			|| t->grid[i][j] == t->enemy - 32)
 				sig2 = 1;
 		}
-		if (sig2 == 1 && sig1 == 1 && i < t->h_plateau - 1)
-			return (i + 1);
-		else if (sig2 == 1 && sig1 == 0)
+		if (sig1 == 1 && sig2 == 1)
+			return (i);
+		else if (sig1 == 0 && sig2 == 1)
 			return (-1);
-		if (sig3 == 1)
-			sig1 = 1;
 		i--;
 	}
 	return (-1);

@@ -6,7 +6,7 @@
 /*   By: vinvimo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 22:57:22 by vinvimo           #+#    #+#             */
-/*   Updated: 2017/09/18 22:57:25 by vinvimo          ###   ########.fr       */
+/*   Updated: 2017/09/28 23:22:50 by vinvimo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	initialize(t_struct *t, t_piece *p)
 {
-	t->fd = 0;
 	t->x = 0;
 	t->y = 0;
 	t->i = 0;
@@ -36,4 +35,5 @@ void	initialize(t_struct *t, t_piece *p)
 	p->hor = 0;
 	p->coorx = NULL;
 	p->coory = NULL;
+	t->sig = 0;
 }

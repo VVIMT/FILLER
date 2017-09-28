@@ -6,22 +6,22 @@
 /*   By: vinvimo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 22:59:28 by vinvimo           #+#    #+#             */
-/*   Updated: 2017/09/18 22:59:33 by vinvimo          ###   ########.fr       */
+/*   Updated: 2017/09/28 19:44:54 by vinvimo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-long	tmp_distance(t_struct *t, char enemy)
+long	tmp_distance(t_struct *t, t_piece *p, char enemy)
 {
-	distanceh1(t, enemy);
+	distanceh1(t, p, enemy);
 	distanceh2(t, enemy);
-	distancev1(t, enemy);
+	distancev1(t, p, enemy);
 	distancev2(t, enemy);
 	return (ft_power(t->dis_hor, 2) + ft_power(t->dis_ver, 2));
 }
 
-void	distanceh1(t_struct *t, char enemy)
+void	distanceh1(t_struct *t, t_piece *p, char enemy)
 {
 	int	sig;
 	int	c;
@@ -44,7 +44,7 @@ void	distanceh1(t_struct *t, char enemy)
 		j++;
 	}
 	if (sig == 1)
-		t->dis_hor = c - 1;
+		t->dis_hor = c - (p->right - p->left) - 1;
 }
 
 void	distanceh2(t_struct *t, char enemy)
@@ -73,7 +73,7 @@ void	distanceh2(t_struct *t, char enemy)
 		t->dis_hor = c - 1;
 }
 
-void	distancev1(t_struct *t, char enemy)
+void	distancev1(t_struct *t, t_piece *p, char enemy)
 {
 	int	sig;
 	int	c;
@@ -96,7 +96,7 @@ void	distancev1(t_struct *t, char enemy)
 		i++;
 	}
 	if (sig == 1)
-		t->dis_ver = c - 1;
+		t->dis_ver = c - (p->bot - p->top) - 1;
 }
 
 void	distancev2(t_struct *t, char enemy)

@@ -6,7 +6,7 @@
 /*   By: vinvimo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 22:55:20 by vinvimo           #+#    #+#             */
-/*   Updated: 2017/09/27 23:54:08 by vinvimo          ###   ########.fr       */
+/*   Updated: 2017/09/28 23:23:21 by vinvimo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct		s_struct
 	int				dis_x;
 	int				dis_y;
 	char			**grid;
+	int				sig;
 }					t_struct;
 
 typedef struct		s_piece
@@ -87,22 +88,23 @@ void				put_coor(t_piece *p, int i, int j);
 void				loop_coor(t_piece *p, int i, int j, int n);
 void				shape(t_piece *p);
 int					check(t_struct *t, t_piece *p, char **grid);
-long				tmp_distance(t_struct *t, char enemy);
-void				distanceh1(t_struct *t, char enemy);
+long				tmp_distance(t_struct *t, t_piece *p, char enemy);
+void				distanceh1(t_struct *t, t_piece *p, char enemy);
 void				distanceh2(t_struct *t, char enemy);
-void				distancev1(t_struct *t, char enemy);
+void				distancev1(t_struct *t, t_piece *p, char enemy);
 void				distancev2(t_struct *t, char enemy);
-int					greatest(int a, int b);
-int					choose_targets(t_struct *t, int tmp1, int tmp2);
-int					sweeph1(t_struct *t, int sig1, int sig2, int sig3);
-int					sweeph2(t_struct *t, int sig1, int sig2, int sig3);
-int					sweepv1(t_struct *t, int sig1, int sig2, int sig3);
-int					sweepv2(t_struct *t, int sig1, int sig2, int sig3);
+int					greatest(t_struct *t, int plateau, int a, int b);
+int					choose_targets(t_struct *t, int i, int j);
+int					sweeph1(t_struct *t, int sig1, int sig2);
+int					sweeph2(t_struct *t, int sig1, int sig2);
+int					sweepv1(t_struct *t, int sig1, int sig2);
+int					sweepv2(t_struct *t, int sig1, int sig2);
 long				distance(t_struct *t);
 void				algo(t_struct *t, t_piece *p);
-void				algo_2(t_struct *t, t_piece *p);
+void				init_algo(t_struct *t, t_piece *p);
+void				loop_main_algo(t_struct *t, t_piece *p);
 void				loop_algo(t_struct *t, t_piece *p);
-void				loop_algo_2(t_struct *t, t_piece *p);
+void				loop_init_algo(t_struct *t, t_piece *p);
 long				ft_print(char **data, int fd);
 
 #endif
