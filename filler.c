@@ -69,7 +69,7 @@ int		main(void)
 	t_piece		p;
 
 //t.fd = open("Plateau", O_RDONLY);
-	t.fd = 0;
+t.fd = 0;
 	t.player_number = 0;
 	t.c = 0;
 	t.c_maj = 0;

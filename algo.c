@@ -21,16 +21,25 @@ void	algo(t_struct *t, t_piece *p)
 	t->dis_y = t->h_plateau;
 	t->dis_hor = t->l_plateau;
 	t->dis_ver = t->h_plateau;
-	p->i = 0;
-	while (t->grid[p->i])
-	{
-		p->j = 0;
-		while (t->grid[p->i][p->j])
+	choose_targets(t, 0, 0);
+		p->i = 0;
+		while (t->grid[p->i])
 		{
-			loop_algo(t, p);
-			p->j++;
+			p->j = 0;
+			while (t->grid[p->i][p->j])
+			{
+				loop_algo(t, p);
+				p->j++;
+			}
+			p->i++;
 		}
-		p->i++;
+//	else
+//		algo_2(t, p);
+	if (t->x == -(t->l_plateau + t->h_plateau)
+	|| t->y == -(t->l_plateau + t->h_plateau))
+	{
+		t->x = 0;
+		t->y = 0;
 	}
 	ft_putnbr(t->x);
 	ft_putchar(' ');
@@ -61,21 +70,16 @@ void	loop_algo(t_struct *t, t_piece *p)
 	{
 		t->i = p->i;
 		t->j = p->j;
-		if (choose_targets(t, 0, 0))
-		{
 		if (p->i - p->top + p->bot <= t->h_plateau
 		&& p->j - p->left + p->right <= t->l_plateau
 		&& (tmp_distance(t, '1') <= distance(t)
-		|| tmp_distance(t, '2') <= distance(t)))
+		&& tmp_distance(t, '2') <= distance(t)))
 		{
 			t->dis_x = t->dis_hor;
 			t->dis_y = t->dis_ver;
 			t->x = p->i - p->top;
 			t->y = p->j - p->left;
 		}
-		}
-		else
-			algo_2(t, p);
 	}
 }
 
@@ -89,7 +93,7 @@ void	loop_algo_2(t_struct *t, t_piece *p)
 		t->j = p->j;
 		if (p->i - p->top + p->bot <= t->h_plateau
 		&& p->j - p->left + p->right <= t->l_plateau
-		&& tmp_distance(t, t->enemy) < distance(t))
+		&& tmp_distance(t, t->enemy - 32) < distance(t))
 		{
 			t->dis_x = t->dis_hor;
 			t->dis_y = t->dis_ver;

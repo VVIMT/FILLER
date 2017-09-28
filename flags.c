@@ -2,27 +2,42 @@
 
 int		choose_targets(t_struct *t, int tmp1, int tmp2)
 {
+	int	sig;
+
+	sig = 0;
 	t->a = sweeph1(t, 0, 0, 0);
 	t->b = sweeph2(t, 0, 0, 0);
-	tmp1 = greatest(t->a, t->b);
+	tmp1 = greatest(t->a, t->l_plateau - 1 - t->b);
 	t->a = sweepv1(t, 0, 0, 0);
 	t->b = sweepv2(t, 0, 0, 0);
-	tmp2 = greatest(t->a, t->b);
+	tmp2 = greatest(t->a, t->h_plateau - 1 - t->b);
 	if (tmp1 > tmp2 && tmp1 > -1)
 	{
 		if (t->grid[0][tmp1] == '.')
+		{
 			t->grid[0][tmp1] = '1';
+			sig++;
+		}
 		if (t->grid[t->h_plateau - 1][tmp1] == '.')
+		{
 			t->grid[t->h_plateau - 1][tmp1] = '2';
-		return (1);
+			sig++;
+		}
+		return (sig);
 	}
 	else if (tmp1 <= tmp2 && tmp2 > -1)
 	{
 		if (t->grid[tmp2][t->l_plateau - 1] == '.')
+		{
 			t->grid[tmp2][t->l_plateau - 1] = '1';
+			sig++;
+		}
 		if (t->grid[tmp2][0] == '.')
+		{
 			t->grid[tmp2][0] = '2';
-		return (2);
+			sig++;
+		}
+		return (sig);
 	}
 	return (0);
 }
@@ -47,7 +62,7 @@ int		sweeph1(t_struct *t, int sig1, int sig2, int sig3)
 		}
 		if (sig2 == 1 && sig1 == 1 && j > 0)
 			return (j - 1);
-		else if (sig2 == 1)
+		else if (sig2 == 1 && sig1 == 0)
 			return (-1);
 		if (sig3 == 1)
 			sig1 = 1;
@@ -76,7 +91,7 @@ int		sweeph2(t_struct *t, int sig1, int sig2, int sig3)
 		}
 		if (sig2 == 1 && sig1 == 1 && j < t->l_plateau - 1)
 			return (j + 1);
-		else if (sig2 == 1)
+		else if (sig2 == 1 && sig1 == 0)
 			return (-1);
 		if (sig3 == 1)
 			sig1 = 1;
@@ -105,7 +120,7 @@ int		sweepv1(t_struct *t, int sig1, int sig2, int sig3)
 		}
 		if (sig2 == 1 && sig1 == 1 && i > 0)
 			return (i - 1);
-		else if (sig2 == 1)
+		else if (sig2 == 1 && sig1 == 0)
 			return (-1);
 		if (sig3 == 1)
 			sig1 = 1;
@@ -134,7 +149,7 @@ int		sweepv2(t_struct *t, int sig1, int sig2, int sig3)
 		}
 		if (sig2 == 1 && sig1 == 1 && i < t->h_plateau - 1)
 			return (i + 1);
-		else if (sig2 == 1)
+		else if (sig2 == 1 && sig1 == 0)
 			return (-1);
 		if (sig3 == 1)
 			sig1 = 1;
