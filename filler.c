@@ -6,7 +6,7 @@
 /*   By: vinvimo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 22:55:29 by vinvimo           #+#    #+#             */
-/*   Updated: 2017/09/28 23:33:37 by vinvimo          ###   ########.fr       */
+/*   Updated: 2017/09/29 22:02:58 by vinvimo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	solve(t_struct *t, t_piece *p, char *line)
 
 	put_coor(p, 0, 0);
 	algo(t, p);
-ft_print(t->grid, 0);
 	x = 0;
 	while (x <= p->h_carre + 2 && p->piece[x])
 		ft_strdel(&(p->piece[x++]));
@@ -69,8 +68,8 @@ int		main(void)
 	t_struct	t;
 	t_piece		p;
 
-t.fd = open("Plateau", O_RDONLY);
-//t.fd = 0;
+//t.fd = open("Plateau", O_RDONLY);
+t.fd = 0;
 	t.player_number = 0;
 	t.c = 0;
 	t.c_maj = 0;
