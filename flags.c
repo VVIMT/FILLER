@@ -22,29 +22,29 @@ int		choose_targets(t_struct *t, int i, int j)
 		area2 = t->l_plateau * (t->h_plateau - i - 1);
 	if (area1 > area2 && j > 0)
 	{
-		if (t->grid[0][j] == '.')
-			t->grid[0][j] = '!';
-		if (t->grid[t->h_plateau - 1][j] == '.')
-			t->grid[t->h_plateau - 1][j] = '!';
+//		if (t->grid[0][j] == '.')
+//			t->grid[0][j] = '!';
+//		if (t->grid[t->h_plateau - 1][j] == '.')
+//			t->grid[t->h_plateau - 1][j] = '!';
 
-//		if (t->grid[0][t->l_plateau/2] == '.')
-//			t->grid[0][t->l_plateau/2] = '!';
-//		if (t->grid[t->h_plateau - 1][t->l_plateau/2] == '.')
-//			t->grid[t->h_plateau - 1][t->l_plateau/2] = '!';
+		if (t->grid[0][t->l_plateau/2] == '.')
+			t->grid[0][t->l_plateau/2] = '!';
+		if (t->grid[t->h_plateau - 1][t->l_plateau/2] == '.')
+			t->grid[t->h_plateau - 1][t->l_plateau/2] = '!';
 
 		return (1);
 	}
 	else if (area1 <= area2 && i > 0)
 	{
-		if (t->grid[i][t->l_plateau - 1] == '.')
-			t->grid[i][t->l_plateau - 1] = '!';
-		if (t->grid[i][0] == '.')
-			t->grid[i][0] = '!';
+//		if (t->grid[i][t->l_plateau - 1] == '.')
+//			t->grid[i][t->l_plateau - 1] = '!';
+//		if (t->grid[i][0] == '.')
+//			t->grid[i][0] = '!';
 
-//		if (t->grid[t->h_plateau/2][t->l_plateau - 1] == '.')
-//			t->grid[t->h_plateau/2][t->l_plateau - 1] = '!';
-//		if (t->grid[t->h_plateau/2][0] == '.')
-//			t->grid[t->h_plateau/2][0] = '!';
+		if (t->grid[t->h_plateau/2][t->l_plateau - 1] == '.')
+			t->grid[t->h_plateau/2][t->l_plateau - 1] = '!';
+		if (t->grid[t->h_plateau/2][0] == '.')
+			t->grid[t->h_plateau/2][0] = '!';
 
 		return (1);
 	}
@@ -68,7 +68,7 @@ int		sweeph1(t_struct *t, int sig1, int sig2)
 			|| t->grid[i][j] == t->enemy - 32)
 				sig2 = 1;
 		}
-		if (sig1 == 1 && sig2 == 1 && j >= 0)
+		if (sig1 == 1 && sig2 == 1 && j >= 1)
 			return (j);
 		else if (sig1 == 0 && sig2 == 1)
 			return (-1);
@@ -94,7 +94,7 @@ int		sweeph2(t_struct *t, int sig1, int sig2)
 			|| t->grid[i][j] == t->enemy - 32)
 				sig2 = 1;
 		}
-		if (sig1 == 1 && sig2 == 1 && t->l_plateau - j - 1 >= 0)
+		if (sig1 == 1 && sig2 == 1 && t->l_plateau - j - 1 >= 1)
 			return (j);
 		else if (sig1 == 0 && sig2 == 1)
 			return (-1);
@@ -120,7 +120,7 @@ int		sweepv1(t_struct *t, int sig1, int sig2)
 			|| t->grid[i][j] == t->enemy - 32)
 				sig2 = 1;
 		}
-		if (sig1 == 1 && sig2 == 1 && i >= 0)
+		if (sig1 == 1 && sig2 == 1 && i >= 1)
 			return (i);
 		else if (sig1 == 0 && sig2 == 1)
 			return (-1);
@@ -146,7 +146,7 @@ int		sweepv2(t_struct *t, int sig1, int sig2)
 			|| t->grid[i][j] == t->enemy - 32)
 				sig2 = 1;
 		}
-		if (sig1 == 1 && sig2 == 1 && t->h_plateau - i - 1 >= 0)
+		if (sig1 == 1 && sig2 == 1 && t->h_plateau - i - 1 >= 1)
 			return (i);
 		else if (sig1 == 0 && sig2 == 1)
 			return (-1);

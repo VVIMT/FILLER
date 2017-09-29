@@ -5,12 +5,8 @@ void algo(t_struct *t, t_piece *p)
 	compensate(p);
 	t->x = t->l_plateau + t->h_plateau;
 	t->y = t->l_plateau + t->h_plateau;
-	t->dis_x = t->l_plateau + t->h_plateau;
-	t->dis_y = t->l_plateau + t->h_plateau;
 	t->dis = (t->l_plateau * t->l_plateau) + (t->l_plateau * t->l_plateau);
-	t->dis_hor = 0;
-	t->dis_ver = 0;
-	if (choose_targets(t, 0, 0) > 0 && borders(t) == 0)
+	/*if (choose_targets(t, 0, 0) > 0 && borders(t) == 0)
 	{
 		p->i = 0;
 		while (t->grid[p->i])
@@ -25,7 +21,7 @@ void algo(t_struct *t, t_piece *p)
 		}
 	}
 	else
-	{
+	{*/
 		p->i = 0;
 		while (t->grid[p->i])
 		{
@@ -37,7 +33,7 @@ void algo(t_struct *t, t_piece *p)
 			}
 			p->i++;
 		}
-	}
+//	}
 	ft_putnbr(t->x);
 	ft_putchar(' ');
 	ft_putnbr(t->y);
