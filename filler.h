@@ -37,6 +37,10 @@ typedef struct		s_struct
 	char			c;
 	char			c_maj;
 	char			enemy;
+	int				tborder;
+	int				bborder;
+	int				lborder;
+	int				rborder;
 	int				dis_hor;
 	int				dis_ver;
 	int				dis_x;
@@ -88,6 +92,7 @@ void				put_coor(t_piece *p, int i, int j);
 void				loop_coor(t_piece *p, int i, int j, int n);
 void				shape(t_piece *p);
 int					check(t_struct *t, t_piece *p, char **grid);
+int					borders(t_struct *t);
 long				tmp_distance(t_struct *t, t_piece *p, char enemy);
 void				distanceh1(t_struct *t, t_piece *p, char enemy);
 void				distanceh2(t_struct *t, char enemy);
@@ -103,7 +108,7 @@ long				distance(t_struct *t);
 void				algo(t_struct *t, t_piece *p);
 void				init_algo(t_struct *t, t_piece *p);
 void				loop_main_algo(t_struct *t, t_piece *p);
-void				loop_algo(t_struct *t, t_piece *p);
+void				loop_algo(t_struct *t, t_piece *p, int sig);
 void				loop_init_algo(t_struct *t, t_piece *p);
 long				ft_print(char **data, int fd);
 
