@@ -54,9 +54,9 @@ typedef struct		s_piece
 	int				l_carre;
 	int				h_carre;
 	int				left;
+	int				right;
 	int				top;
 	int				bot;
-	int				right;
 	int				ver;
 	int				hor;
 	int				i;
