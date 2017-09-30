@@ -12,38 +12,30 @@ void	top_line(t_piece *p, int i)
 {
 	p->top = p->coorx[0];
 	while (p->coorx[++i] != -1)
-	{
 		if (p->coorx[i] < p->top)
 			p->top = p->coorx[i];
-	}
 }
 
 void	left_line(t_piece *p, int i)
 {
 	p->left = p->coory[0];
 	while (p->coory[++i] != -1)
-	{
 		if (p->coory[i] < p->left)
 			p->left = p->coory[i];
-	}
 }
 
 void	bottom_line(t_piece *p, int i)
 {
 	p->bot = p->coorx[0];
 	while (p->coorx[++i] != -1)
-	{
 		if (p->coorx[i] > p->bot)
 			p->bot = p->coorx[i];
-	}
 }
 
 void	right_line(t_piece *p, int i)
 {
 	p->right = p->coory[0];
 	while (p->coory[++i] != -1)
-	{
 		if (p->coory[i] > p->right)
 			p->right = p->coory[i];
-	}
 }

@@ -12,7 +12,16 @@ long long	tmp_distance(t_struct *t, t_piece *p, char enemy)
 
 long long	pythagore(t_struct *t, t_piece *p, int i, int c)
 {
-	return (ft_power(c, 2) + ft_power(t->i - i, 2));
+	int	a;
+	int	b;
+
+	a = t->i - i;
+	b = c;
+//	if (-(t->i - i) >= p->bot - p->top + 1)
+//		a = -(t->i - i) - (p->bot - p->top + 1);
+//	if (c >= p->right - p->left)
+//		b = c - (p->right - p->left);
+	return (ft_power(a, 2) + ft_power(b, 2));
 }
 
 void		distance_r(t_struct *t, t_piece *p, char enemy)
