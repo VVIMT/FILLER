@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   filler.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: vinvimo <marvin@42.fr>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/18 22:55:20 by vinvimo           #+#    #+#             */
-/*   Updated: 2017/09/29 23:45:19 by vinvimo          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef FILLER_H
 # define FILLER_H
 
@@ -28,8 +16,6 @@ typedef struct		s_struct
 	int				y;
 	int				i;
 	int				j;
-	int				a;
-	int				b;
 	int				superposition;
 	long			l_plateau;
 	long			h_plateau;
@@ -37,10 +23,6 @@ typedef struct		s_struct
 	char			c;
 	char			c_maj;
 	char			enemy;
-	int				tborder;
-	int				bborder;
-	int				lborder;
-	int				rborder;
 	long long		dis_tmp1;
 	long long		dis_tmp2;
 	long long		dis;
@@ -91,21 +73,11 @@ void				put_coor(t_piece *p, int i, int j);
 void				loop_coor(t_piece *p, int i, int j, int n);
 void				shape(t_piece *p);
 int					check(t_struct *t, t_piece *p, char **grid);
-int					borders(t_struct *t);
 long long			tmp_distance(t_struct *t, t_piece *p, char enemy);
-int					distance_r(t_struct *t, t_piece *p, char enemy);
-int					distance_l(t_struct *t, char enemy);
-int					greatest(t_struct *t, int plateau, int a, int b);
-int					choose_targets(t_struct *t, int i, int j);
-int					sweeph1(t_struct *t, int sig1, int sig2);
-int					sweeph2(t_struct *t, int sig1, int sig2);
-int					sweepv1(t_struct *t, int sig1, int sig2);
-int					sweepv2(t_struct *t, int sig1, int sig2);
+long long			pythagore(t_struct *t, t_piece *p, int i, int c);
+void				distance_r(t_struct *t, t_piece *p, char enemy);
+void				distance_l(t_struct *t, t_piece *p, char enemy);
 void				algo(t_struct *t, t_piece *p);
-void				init_algo(t_struct *t, t_piece *p);
-void				loop_main_algo(t_struct *t, t_piece *p);
 void				loop_algo(t_struct *t, t_piece *p);
-void				loop_init_algo(t_struct *t, t_piece *p);
-long				ft_print(char **data, int fd);
 
 #endif

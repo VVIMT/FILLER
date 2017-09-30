@@ -1,14 +1,3 @@
-#******************************************************************************#
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: vinvimo <marvin@42.fr>                     +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/09/19 21:03:39 by vinvimo           #+#    #+#              #
-#    Updated: 2017/09/27 23:55:19 by vinvimo          ###   ########.fr        #
-#                                                                              #
-#******************************************************************************#
 
 NAME=vinvimo.filler
 
@@ -19,8 +8,7 @@ CFLAGS=-Wall -Wextra -Werror
 HDDIRS=-I /filler.h
 
 SRCS=get_next_line.c filler.c initialize.c create_tab.c ft_intnew.c \
-get_data.c put_coor.c compensate.c check.c tmp_distance.c distance.c \
-flags.c algo.c ft_print.c
+get_data.c put_coor.c compensate.c check.c tmp_distance.c algo.c
 
 OBJ=$(SRCS:.c=.o)
 
