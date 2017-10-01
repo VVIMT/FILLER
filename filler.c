@@ -5,7 +5,7 @@ void	solve(t_struct *t, t_piece *p, char *line)
 	int	x;
 
 	put_coor(p, 0, 0);
-	algo(t, p);
+	sweep(t, p);
 	x = 0;
 	while (x <= p->h_carre + 2 && p->piece[x])
 		ft_strdel(&(p->piece[x++]));

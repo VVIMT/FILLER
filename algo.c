@@ -1,6 +1,6 @@
 #include "filler.h"
 
-void	algo(t_struct *t, t_piece *p)
+void	sweep(t_struct *t, t_piece *p)
 {
 	compensate(p);
 	t->x = 0;
@@ -12,7 +12,7 @@ void	algo(t_struct *t, t_piece *p)
 		p->j = 0;
 		while (t->grid[p->i][p->j])
 		{
-			loop_algo(t, p);
+			algo(t, p);
 			p->j++;
 		}
 		p->i++;
@@ -23,7 +23,7 @@ void	algo(t_struct *t, t_piece *p)
 	ft_putchar('\n');
 }
 
-void	loop_algo(t_struct *t, t_piece *p)
+void	algo(t_struct *t, t_piece *p)
 {
 	long long	a;
 	long long	b;

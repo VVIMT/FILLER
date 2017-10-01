@@ -77,7 +77,7 @@ long long			tmp_distance(t_struct *t, t_piece *p, char enemy);
 long long			pythagore(t_struct *t, t_piece *p, int i, int c);
 void				distance_r(t_struct *t, t_piece *p, char enemy);
 void				distance_l(t_struct *t, t_piece *p, char enemy);
+void				sweep(t_struct *t, t_piece *p);
 void				algo(t_struct *t, t_piece *p);
-void				loop_algo(t_struct *t, t_piece *p);
 
 #endif
