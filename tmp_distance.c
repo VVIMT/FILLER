@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tmp_distance.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vinvimo <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/01 18:39:21 by vinvimo           #+#    #+#             */
+/*   Updated: 2017/10/01 18:46:39 by vinvimo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 
 long long	tmp_distance(t_struct *t, t_piece *p, char enemy)
@@ -17,14 +29,14 @@ long long	pythagore(t_struct *t, t_piece *p, int i, int c)
 
 	a = t->i - i;
 	b = c;
-	if (a < -(p->bot - p->top + 1)/2)
-		a = -(t->i - i) - (p->bot - p->top + 1)/2;
+	if (a < -(p->bot - p->top + 1) / 2)
+		a = -(t->i - i) - (p->bot - p->top + 1) / 2;
 	else
-		a = t->i - i + (p->bot - p->top + 1)/2;
-	if (c < -(p->right - p->left + 1)/2)
-		b = -c + (p->right - p->left + 1)/2;
+		a = t->i - i + (p->bot - p->top + 1) / 2;
+	if (c < -(p->right - p->left + 1) / 2)
+		b = -c + (p->right - p->left + 1) / 2;
 	else
-		b = c - (p->right - p->left + 1)/2;
+		b = c - (p->right - p->left + 1) / 2;
 	return (ft_power(a, 2) + ft_power(b, 2));
 }
 
